@@ -1,0 +1,21 @@
+{
+    "name": "adiletmurzaliev/really-toxic-bot",
+    "authors": [
+        {
+            "name": "Adilet Murzaliev",
+            "email": "adilet.murzaliev@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/dotenv": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+    }
+}
