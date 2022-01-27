@@ -54,4 +54,14 @@ final class BotClient
             ],
         ]);
     }
+
+    public function setWebhook(string $webhookUrl): void
+    {
+        $this->client->request('POST', 'setWebhook', [
+            RequestOptions::JSON => [
+                'url' => $webhookUrl,
+            ],
+            'debug'              => true,
+        ]);
+    }
 }
