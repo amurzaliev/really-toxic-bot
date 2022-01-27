@@ -2,9 +2,9 @@
 declare(strict_types=1);
 assert_options(ASSERT_ACTIVE, 1);
 
-use App\App;
 use App\BotClient;
-use App\MessageGenerator;
+use App\ConsoleApp;
+use App\Dto\ConsoleCommand;
 use App\Settings;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -24,9 +24,12 @@ $settings = new Settings(
 );
 
 $client = new BotClient($settings->apiUrl() . $settings->botToken() . '/');
-$messageGenerator = new MessageGenerator();
 
-$logger = new Logger('app');
-$logger->pushHandler(new StreamHandler('log/app.log', Logger::DEBUG));
+$logger = new Logger('console_app');
+$logger->pushHandler(new StreamHandler('log/console_app.log', Logger::DEBUG));
 
-(new App($client, $messageGenerator, $settings, $logger))->run();
+$name = $_SERVER['argv'][1] ?? '';
+$argument = $_SERVER['argv'][2] ?? '';
+$consoleCommand = new ConsoleCommand($name, $argument);
+
+(new ConsoleApp($client, $settings, $logger))->run($consoleCommand);

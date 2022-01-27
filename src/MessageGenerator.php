@@ -9,8 +9,10 @@ final class MessageGenerator
 {
     private array $statements = [
         'Согласен',
-        'Сгоняй за пивом, пёс',
-        'Не может быть',
+        'Лучше сгоняй за пивом',
+        'Пёс',
+        'Это ты про меня?',
+        'Очень интересно, продолжай',
         'Видимо, зубная фея была сегодня очень довольна тобой, поросёночек!',
         'Господи, спасибо тебе за идиотов!',
         'Да, мы поняли, НАМ НАСРАТЬ!'
@@ -20,14 +22,15 @@ final class MessageGenerator
         'Да',
         'Нет',
         'Если ты пидор - то да',
+        'Не отвечайте на это!'
     ];
 
     public function generate(Message $message): string
     {
         if (mb_stripos($message->text(), '?') !== false) {
-            return $this->statements[array_rand($this->statements)];
+            return $this->questions[array_rand($this->questions)];
         }
 
-        return $this->questions[array_rand($this->questions)];
+        return $this->statements[array_rand($this->statements)];
     }
 }
